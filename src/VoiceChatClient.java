@@ -59,7 +59,7 @@ import javax.swing.JTextField;
         public static void main(String[] args) throws Exception {
             try {
                 serverAddress = getServerAddress();
-                socket = new Socket(serverAddress, 9999); //192.168.1.4
+                socket = new Socket(serverAddress, 7990); //192.168.1.4
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 dataInputStream = new DataInputStream(socket.getInputStream());
 
@@ -97,7 +97,6 @@ import javax.swing.JTextField;
                         dataOutputStream.flush();
                         if(System.in.available() != 0) {
                             microphone.close();
-                            speakers.drain();
                             speakers.close();
                             System.exit(0);
                         }
