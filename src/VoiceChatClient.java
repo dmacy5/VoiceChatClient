@@ -42,13 +42,11 @@ import javax.swing.JTextField;
         public void run() {
             try {
                 while (true) {
-
                     // write mic data to stream for immediate playback
-                    dataInputStream = new DataInputStream(socket.getInputStream());
                     int len = dataInputStream.readInt();
                     byte[] data = new byte[len];
                     dataInputStream.readFully(data);
-                    speakers.write(data, 0, len);
+                    speakers.write(data, 0, 1024);
                 }
                 //speakers.drain();
                 //speakers.close();
@@ -71,6 +69,7 @@ import javax.swing.JTextField;
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 keyRead = new BufferedReader(new InputStreamReader(System.in));
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
+                dataInputStream = new DataInputStream(socket.getInputStream());
 
 
 
