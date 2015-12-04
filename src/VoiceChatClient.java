@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+//hello
 
     public class VoiceChatClient implements Runnable{
 
@@ -40,8 +41,6 @@ import javax.swing.JTextField;
          * Connects to the server then enters the processing loop. (Reading all of the input streams)
          */
         public void run() {
-            // Process all messages from server, according to the protocol.
-
             try {
                 while (true) {
 
@@ -72,9 +71,7 @@ import javax.swing.JTextField;
                 socket = new Socket(serverAddress, 9045);
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 keyRead = new BufferedReader(new InputStreamReader(System.in));
-               // out = new PrintWriter(socket.getOutputStream(), true);
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
-                String sendMessage;
 
 
 
