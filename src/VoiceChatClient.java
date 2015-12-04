@@ -48,8 +48,6 @@ import javax.swing.JTextField;
                     dataInputStream.readFully(data);
                     speakers.write(data, 0, 1024);
                 }
-                //speakers.drain();
-                //speakers.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -65,7 +63,7 @@ import javax.swing.JTextField;
         public static void main(String[] args) throws Exception {
             try {
                 serverAddress = getServerAddress();
-                socket = new Socket(serverAddress, 7889); //192.168.1.4
+                socket = new Socket(serverAddress, 9999); //192.168.1.4
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 keyRead = new BufferedReader(new InputStreamReader(System.in));
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
@@ -96,13 +94,20 @@ import javax.swing.JTextField;
 
 
                     (new Thread(new VoiceChatClient())).start();
+
+                    System.out.println("Type any key to exit");
                     while(true) //Possibly need a way to exit here
                     {
                         numBytesRead = microphone.read(data, 0, CHUNK_SIZE);
                         dataOutputStream.write(data, 0, numBytesRead);
                         dataOutputStream.flush();
+                        if(System.in.available() != 0) {
+                            microphone.close();
+                            speakers.drain();
+                            speakers.close();
+                            System.exit(0);
+                        }
                     }
-                        //microphone.close();
 
                 }
                 catch(LineUnavailableException e){
