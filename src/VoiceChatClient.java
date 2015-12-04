@@ -43,8 +43,8 @@ import javax.swing.JTextField;
             try {
                 while (true) {
                     // write mic data to stream for immediate playback
-                    int len = dataInputStream.readInt();
-                    byte[] data = new byte[len];
+                    int length = dataInputStream.available();
+                    byte[] data = new byte[length];
                     dataInputStream.readFully(data);
                     speakers.write(data, 0, 1024);
                 }
