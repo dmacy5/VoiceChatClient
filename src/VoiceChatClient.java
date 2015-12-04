@@ -15,13 +15,9 @@ import javax.swing.JTextField;
 
     public class VoiceChatClient implements Runnable{
 
-        public static BufferedReader in;
-        public static PrintWriter out;
         public static Scanner kb = new Scanner(System.in);
         public static String serverAddress;
         public static Socket socket;
-        public static BufferedReader keyRead;
-        public static String screenName;
         public static DataOutputStream dataOutputStream;
         public static DataInputStream dataInputStream;
         public static TargetDataLine microphone;
@@ -64,8 +60,6 @@ import javax.swing.JTextField;
             try {
                 serverAddress = getServerAddress();
                 socket = new Socket(serverAddress, 9999); //192.168.1.4
-                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                keyRead = new BufferedReader(new InputStreamReader(System.in));
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 dataInputStream = new DataInputStream(socket.getInputStream());
 
