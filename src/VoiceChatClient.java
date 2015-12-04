@@ -12,10 +12,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-/**
- * Created by dmacy on 12/3/2015.
- */
-
 
     public class VoiceChatClient implements Runnable{
 
