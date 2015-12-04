@@ -43,8 +43,8 @@ import javax.swing.JTextField;
             try {
                 while (true) {
                     // write mic data to stream for immediate playback
-                    int length = dataInputStream.available();
-                    byte[] data = new byte[length];
+                    //int length = dataInputStream.available();
+                    byte[] data = new byte[1024];
                     dataInputStream.readFully(data);
                     speakers.write(data, 0, 1024);
                 }
@@ -65,12 +65,11 @@ import javax.swing.JTextField;
         public static void main(String[] args) throws Exception {
             try {
                 serverAddress = getServerAddress();
-                socket = new Socket(serverAddress, 9045);
+                socket = new Socket(serverAddress, 7889); //192.168.1.4
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 keyRead = new BufferedReader(new InputStreamReader(System.in));
                 dataOutputStream = new DataOutputStream(socket.getOutputStream());
                 dataInputStream = new DataInputStream(socket.getInputStream());
-
 
 
                 //Initializing all of the microphone data
