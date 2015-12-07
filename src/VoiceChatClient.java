@@ -99,6 +99,7 @@ public class VoiceChatClient implements Runnable{
             }
             finally {
                 System.out.println("Leaving client...");
+                System.exit(0);
             }
         }
     }
